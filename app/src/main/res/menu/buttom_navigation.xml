@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/dashboard"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Dashboard" />
+    <item android:id="@+id/add"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="Add Recipes" />
+    <item android:id="@+id/manage"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="Manage Recipes" />
+    <item android:id="@+id/account"
+        android:icon="@drawable/ic_person_black_24dp"
+        android:title="Account" />
+
+
+</menu>
