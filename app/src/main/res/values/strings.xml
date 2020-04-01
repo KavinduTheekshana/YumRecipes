@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Yum</string>
+
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="dummy_text">"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard"</string>
+
+
+</resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ffb107</color>
+    <color name="colorPrimaryDark">#ffb107</color>
+    <color name="colorAccent">#ffb107</color>
+
+    <color name="black_overlay">#66000000</color>
+
+    <color name="theme_yellow">#ffb107</color>
+    <color name="theme_black">#15202b</color>
+
+    <color name="transparent">#00000000</color>
+</resources>
