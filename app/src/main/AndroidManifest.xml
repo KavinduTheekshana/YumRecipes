@@ -9,6 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppThemeMaterial">
+        <activity android:name=".WellDoneActivity"></activity>
+
+
+
         <activity android:name=".DashboardActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,15 +20,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
         <activity android:name=".ForgotPasswordActivity">
 
+
         </activity>
-        <activity android:name=".LoginActivity"></activity>
-        <activity android:name=".SignupActivity" />
+        <activity android:name=".LoginActivity" >
+
+
+        </activity>
+        <activity android:name=".SignupActivity">
+
+
+        </activity>
         <activity
-            android:name=".LoginOrSignUp"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@style/AppThemeFullScreenMaterial" />
+            android:name=".LoginOrSignUp">
+
+        </activity>
         <activity
             android:name=".SplashScreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

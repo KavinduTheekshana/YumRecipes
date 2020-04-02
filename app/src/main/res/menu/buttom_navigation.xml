@@ -2,16 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/dashboard"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/ic_store"
         android:title="Dashboard" />
-    <item android:id="@+id/add"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="Add Recipes" />
+    <item android:id="@+id/breakfast"
+        android:icon="@drawable/ic_toast"
+        android:title="Breakfast" />
     <item android:id="@+id/manage"
         android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="Manage Recipes" />
     <item android:id="@+id/account"
-        android:icon="@drawable/ic_person_black_24dp"
+        android:icon="@drawable/ic_cooking"
         android:title="Account" />
 
 

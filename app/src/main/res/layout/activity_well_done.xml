@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WellDoneActivity"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center">
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/logowithoutbg"
+        android:padding="10dp">
+
+    </ImageView>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@color/theme_yellow"
+        app:cardCornerRadius="45dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_check_black_24dp"
+            android:padding="10dp">
+
+        </ImageView>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/pt_serif_bold"
+        android:gravity="center"
+        android:textColor="@color/theme_black"
+        android:textSize="25dp"
+        android:text="Well Done!">
+    </TextView>
+
+    <TextView
+        android:layout_margin="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:text="@string/default_text"></TextView>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:clickable="true"
+        android:elevation="2dp"
+        app:cardElevation="5dp"
+        android:layout_margin="30dp"
+        android:backgroundTint="@color/theme_yellow"
+        app:cardCornerRadius="25dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/pt_serif_bold"
+            android:gravity="center"
+            android:text="Login Now"
+            android:textColor="#fff"
+            android:textSize="18dp"></TextView>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+</LinearLayout>

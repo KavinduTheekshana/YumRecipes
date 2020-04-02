@@ -3,5 +3,6 @@
     <array name="preloaded_fonts" translatable="false">
         <item>@font/pt_serif</item>
         <item>@font/pt_serif_bold</item>
+        <item>@font/pt_serif_italic</item>
     </array>
 </resources>

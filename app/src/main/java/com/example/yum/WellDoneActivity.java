@@ -5,15 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-public class SignupActivity extends AppCompatActivity {
+public class WellDoneActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
+        setContentView(R.layout.activity_well_done);
 
         hideSystemUI();
     }
+
 
     private void hideSystemUI() {
         // Enables regular immersive mode.
@@ -31,6 +32,4 @@ public class SignupActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN);
     }
-
-
 }
