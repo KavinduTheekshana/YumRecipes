@@ -34,10 +34,9 @@
                     android:layout_margin="2dp"
                     app:cardCornerRadius="8dp">
                     <ImageView
-                        android:id="@+id/single_customer_image"
                         android:layout_width="110dp"
                         android:layout_height="110dp"
-                        android:src="@drawable/splash_background_final"
+                        android:src="@drawable/cookbook"
                         android:layout_gravity="center"
                         android:scaleType="centerCrop"
                         android:padding="4dp" />
@@ -54,7 +53,6 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/single_customer_shop_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"

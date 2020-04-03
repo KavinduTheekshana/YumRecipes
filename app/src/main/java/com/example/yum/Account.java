@@ -1,5 +1,7 @@
 package com.example.yum;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,13 +18,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.card.MaterialCardView;
 
 import static com.example.yum.R.id.bottom_navigation_view;
+import static com.example.yum.R.id.gone;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class Account extends Fragment{
-    BottomNavigationView account_navigation_view;
 
     private LinearLayout profile_view,current_password,profile_edit_view,reset_password_layout;
     private ImageView profile_edit;
@@ -36,7 +38,7 @@ public class Account extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_account, container, false);
+        final View v = inflater.inflate(R.layout.fragment_account, container, false);
 
         profile_view = v.findViewById(R.id.profile_layout);
         profile_edit = v.findViewById(R.id.btn_go_profilr_rdite);
@@ -45,6 +47,18 @@ public class Account extends Fragment{
         current_password = v.findViewById(R.id.current_password);
         reset_password_layout = v.findViewById(R.id.reset_password_layout);
         submit_current_password = v.findViewById(R.id.submit_current_password);
+
+
+
+        //try to use animation
+//        profile_edit_view.animate().translationY(profile_edit_view.getHeight()).alpha(0.0f).setDuration(300).setListener(new AnimatorListenerAdapter() {
+//            @Override
+//            public void onAnimationCancel(Animator animation) {
+//                super.onAnimationCancel(animation);
+//                profile_edit_view.setVisibility(profile_edit_view.VISIBLE);
+//            }
+//        });
+
 
 
         profile_edit.setOnClickListener(new View.OnClickListener() {

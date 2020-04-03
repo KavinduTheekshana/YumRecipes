@@ -37,6 +37,8 @@ public class DashboardActivity extends AppCompatActivity implements BottomNaviga
 
     Dashboard dashboard = new Dashboard();
     Account account = new Account();
+    AddRecipe addRecipe = new AddRecipe();
+    Menu menu = new Menu();
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -45,8 +47,12 @@ public class DashboardActivity extends AppCompatActivity implements BottomNaviga
                 getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in,R.anim.fade_out).replace(R.id.container,dashboard).commit();
                 return true;
 
-            case R.id.breakfast:
-                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in,R.anim.fade_out).replace(R.id.container,dashboard).commit();
+            case R.id.menu:
+                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in,R.anim.fade_out).replace(R.id.container,menu).commit();
+                return true;
+
+            case R.id.addRecipe:
+                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in,R.anim.fade_out).replace(R.id.container,addRecipe).commit();
                 return true;
 
             case R.id.account:
