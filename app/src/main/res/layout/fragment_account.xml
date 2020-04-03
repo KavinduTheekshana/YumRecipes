@@ -7,6 +7,7 @@
     tools:context=".Account">
 
 <LinearLayout
+    android:id="@+id/profile_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -43,6 +44,7 @@
             android:layout_weight="1">
 
             <ImageView
+                android:id="@+id/btn_go_profilr_rdite"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/ic_settings_black_24dp"
@@ -530,5 +532,22 @@
     </FrameLayout>
 
 </LinearLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/profile_edite_layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="New Layout"
+            android:textSize="20dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_horizontal"/>
+
+    </LinearLayout>
 
 </FrameLayout>
