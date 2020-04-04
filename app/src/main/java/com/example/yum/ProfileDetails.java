@@ -8,7 +8,6 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.google.android.material.card.MaterialCardView;
 
@@ -16,10 +15,10 @@ import com.google.android.material.card.MaterialCardView;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Dashboard extends Fragment {
-    MaterialCardView breakfast;
+public class ProfileDetails extends Fragment {
+    MaterialCardView profile_details_update_password;
 
-    public Dashboard() {
+    public ProfileDetails() {
         // Required empty public constructor
     }
 
@@ -28,21 +27,19 @@ public class Dashboard extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View v = inflater.inflate(R.layout.fragment_dashboard, container, false);
+        View v = inflater.inflate(R.layout.fragment_profile_details, container, false);
 
-
-        breakfast = v.findViewById(R.id.breakfast);
-
-        breakfast.setOnClickListener(new View.OnClickListener() {
+        profile_details_update_password=v.findViewById(R.id.profile_details_update_password);
+        profile_details_update_password.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                SingleCategory singleCategory = new SingleCategory();
+            public void onClick(View v) {
+                CurrentPassword currentPassword = new CurrentPassword();
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in,R.anim.fade_out);
-                fragmentTransaction.replace(R.id.container,singleCategory).commit();
+                fragmentTransaction.replace(R.id.container,currentPassword).commit();
             }
         });
 
-        // Inflate the layout for this fragment
         return v;
+
     }
 }

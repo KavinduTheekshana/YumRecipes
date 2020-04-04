@@ -8,7 +8,6 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.google.android.material.card.MaterialCardView;
 
@@ -16,10 +15,9 @@ import com.google.android.material.card.MaterialCardView;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Dashboard extends Fragment {
-    MaterialCardView breakfast;
-
-    public Dashboard() {
+public class CurrentPassword extends Fragment {
+    MaterialCardView current_password_submit;
+    public CurrentPassword() {
         // Required empty public constructor
     }
 
@@ -28,21 +26,16 @@ public class Dashboard extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View v = inflater.inflate(R.layout.fragment_dashboard, container, false);
-
-
-        breakfast = v.findViewById(R.id.breakfast);
-
-        breakfast.setOnClickListener(new View.OnClickListener() {
+        View v= inflater.inflate(R.layout.fragment_current_password, container, false);
+        current_password_submit=v.findViewById(R.id.current_password_submit);
+        current_password_submit.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                SingleCategory singleCategory = new SingleCategory();
+            public void onClick(View v) {
+                ResetPassword resetPassword = new ResetPassword();
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in,R.anim.fade_out);
-                fragmentTransaction.replace(R.id.container,singleCategory).commit();
+                fragmentTransaction.replace(R.id.container,resetPassword).commit();
             }
         });
-
-        // Inflate the layout for this fragment
         return v;
     }
 }

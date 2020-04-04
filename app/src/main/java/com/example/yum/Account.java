@@ -2,15 +2,20 @@ package com.example.yum;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -26,9 +31,8 @@ import static com.example.yum.R.id.gone;
  */
 public class Account extends Fragment{
 
-    private LinearLayout profile_view,current_password,profile_edit_view,reset_password_layout;
     private ImageView profile_edit;
-    private MaterialCardView account_update_password,submit_current_password;
+
 
     public Account() {
         // Required empty public constructor
@@ -40,50 +44,21 @@ public class Account extends Fragment{
                              Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.fragment_account, container, false);
 
-        profile_view = v.findViewById(R.id.profile_layout);
+
         profile_edit = v.findViewById(R.id.btn_go_profilr_rdite);
-        profile_edit_view = v.findViewById(R.id.profile_edit_layout);
-        account_update_password = v.findViewById(R.id.account_update_password);
-        current_password = v.findViewById(R.id.current_password);
-        reset_password_layout = v.findViewById(R.id.reset_password_layout);
-        submit_current_password = v.findViewById(R.id.submit_current_password);
-
-
-
-        //try to use animation
-//        profile_edit_view.animate().translationY(profile_edit_view.getHeight()).alpha(0.0f).setDuration(300).setListener(new AnimatorListenerAdapter() {
-//            @Override
-//            public void onAnimationCancel(Animator animation) {
-//                super.onAnimationCancel(animation);
-//                profile_edit_view.setVisibility(profile_edit_view.VISIBLE);
-//            }
-//        });
-
-
-
         profile_edit.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                profile_view.setVisibility(View.GONE);
-                profile_edit_view.setVisibility(View.VISIBLE);
+            public void onClick(View v) {
+                ProfileDetails profileDetails = new ProfileDetails();
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in,R.anim.fade_out);
+                fragmentTransaction.replace(R.id.container,profileDetails).commit();
             }
         });
 
-        account_update_password.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                profile_edit_view.setVisibility(View.GONE);
-                current_password.setVisibility(View.VISIBLE);
-            }
-        });
 
-        submit_current_password.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                current_password.setVisibility(View.GONE);
-                reset_password_layout.setVisibility(View.VISIBLE);
-            }
-        });
+
+
+
 
 
         // Inflate the layout for this fragment

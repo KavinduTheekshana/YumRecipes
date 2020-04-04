@@ -101,7 +101,8 @@
                         android:layout_width="30dp"
                         android:layout_gravity="center"
                         android:layout_height="30dp"
-                        android:src="@drawable/ic_heart">
+                        android:src="@drawable/ic_heart"
+                        android:tint="@color/theme_yellow">
                     </ImageView>
 
 
