@@ -44,7 +44,7 @@
         android:gravity="center"
         android:textColor="@color/theme_black"
         android:textSize="25dp"
-        android:text="Well Done!">
+        android:text="@string/well_done">
     </TextView>
 
     <TextView
@@ -58,6 +58,7 @@
 
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/welldone_btn_login"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:clickable="true"
@@ -73,7 +74,7 @@
             android:layout_gravity="center"
             android:fontFamily="@font/pt_serif_bold"
             android:gravity="center"
-            android:text="Login Now"
+            android:text="@string/login_now_btn"
             android:textColor="#fff"
             android:textSize="18dp"></TextView>
 

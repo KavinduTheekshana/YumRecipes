@@ -27,6 +27,7 @@
             app:cardCornerRadius="50dp">
 
             <ImageView
+                android:id="@+id/account_user_profile_pic"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -53,6 +54,7 @@
             </ImageView>
 
             <TextView
+                android:id="@+id/account_tv_user_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -63,6 +65,7 @@
             </TextView>
 
             <TextView
+                android:id="@+id/account_tv_user_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/pt_serif_italic"
@@ -106,6 +109,7 @@
 
 
                 <TextView
+                    android:id="@+id/account_tv_recipes_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/pt_serif_bold"
@@ -121,7 +125,7 @@
                     android:layout_gravity="center"
                     android:fontFamily="@font/pt_serif"
                     android:gravity="center"
-                    android:text="Recipes"
+                    android:text="@string/recipes_tv"
                     android:textSize="20dp"></TextView>
             </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -154,7 +158,7 @@
                 android:fontFamily="@font/pt_serif_bold"
                 android:textSize="20dp"
                 android:textColor="@color/theme_black"
-                android:text="My Cookbook" />
+                android:text="@string/my_cook_book_tv" />
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"

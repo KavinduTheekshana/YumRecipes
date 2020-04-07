@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/pt_serif_bold"
-                android:text="Add Recipes"
+                android:text="@string/add_recipes_tv"
                 android:textSize="35dp"
                 android:textColor="@color/theme_black">
             </TextView>
@@ -72,6 +72,7 @@
                         android:layout_height="match_parent">
 
                         <ImageView
+                            android:id="@+id/add_recipes_add_new_img"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
@@ -112,9 +113,10 @@
                     android:layout_marginRight="15dp"
                     android:background="@color/transparent"
                     app:boxBackgroundColor="@color/transparent"
-                    android:hint="Add Recipe Name">
+                    android:hint="@string/recipes_name_et">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/add_recipes_et_recipe_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/pt_serif" />
@@ -129,9 +131,10 @@
                     android:layout_marginRight="15dp"
                     android:background="@color/transparent"
                     app:boxBackgroundColor="@color/transparent"
-                    android:hint="Add Ingredients">
+                    android:hint="@string/recipes_ingredients_et">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/add_recipes_et_recipe_ingredients"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textMultiLine"
@@ -148,9 +151,10 @@
                     android:layout_marginRight="15dp"
                     android:background="@color/transparent"
                     app:boxBackgroundColor="@color/transparent"
-                    android:hint="Add Description">
+                    android:hint="@string/recipes_description_et">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/add_recipes_et_recipe_description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textMultiLine"
@@ -163,6 +167,7 @@
 
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/add_recipes_btn_submit"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginLeft="15dp"
@@ -171,7 +176,7 @@
                     android:layout_marginRight="15dp"
                     android:elevation="2dp"
                     app:cardElevation="5dp"
-                    android:layout_marginBottom="70dp"
+                    android:layout_marginBottom="20dp"
                     android:backgroundTint="@color/theme_yellow"
                     app:cardCornerRadius="25dp">
 
@@ -181,12 +186,22 @@
                         android:layout_gravity="center"
                         android:fontFamily="@font/pt_serif"
                         android:gravity="center"
-                        android:text="Submit Recipes"
+                        android:text="@string/recipes_submit_btn"
                         android:textColor="#fff"></TextView>
 
                 </com.google.android.material.card.MaterialCardView>
 
+                <TextView
+                    android:layout_marginBottom="80dp"
+                    android:id="@+id/addrecipes_tv_alert"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:textColor="@color/alert_colour"
+                    android:layout_gravity="center">
 
+                </TextView>
 
 
 

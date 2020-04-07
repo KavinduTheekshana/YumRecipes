@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.card.MaterialCardView;
@@ -31,7 +32,8 @@ import static com.example.yum.R.id.gone;
  */
 public class Account extends Fragment{
 
-    private ImageView profile_edit;
+    private ImageView profile_edit,user_profile_pic;
+    private TextView user_name,user_email,user_recipes_count;
 
 
     public Account() {
@@ -44,8 +46,19 @@ public class Account extends Fragment{
                              Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.fragment_account, container, false);
 
-
+        //UI Declare
         profile_edit = v.findViewById(R.id.btn_go_profilr_rdite);
+        user_profile_pic = v.findViewById(R.id.account_user_profile_pic);
+
+        user_name = v.findViewById(R.id.account_tv_user_name);
+        user_email = v.findViewById(R.id.account_tv_user_email);
+        user_recipes_count = v.findViewById(R.id.account_tv_recipes_count);
+
+
+
+
+
+
         profile_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,14 +71,8 @@ public class Account extends Fragment{
 
 
 
-
-
-
         // Inflate the layout for this fragment
         return v;
-
-
     }
-
 
 }

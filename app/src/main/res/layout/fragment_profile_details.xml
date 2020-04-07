@@ -64,9 +64,10 @@
 
 
                         <TextView
+                            android:id="@+id/profile_details_edit_back"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Back"
+                            android:text="@string/back_btn"
                             android:textSize="16dp"
                             android:textColor="@color/theme_yellow"
                             android:layout_gravity="center"></TextView>
@@ -137,7 +138,7 @@
                                 app:cardCornerRadius="50dp">
 
                                 <ImageView
-                                    android:id="@+id/edit_profile_profile_image"
+                                    android:id="@+id/profile_details_edit_user_name_image"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:elevation="1dp"
@@ -183,9 +184,10 @@
 
                         android:background="@color/transparent"
                         app:boxBackgroundColor="@color/transparent"
-                        android:hint="Your Name">
+                        android:hint="@string/username_et_hint">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/profile_details_edit_user_name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/pt_serif" />
@@ -198,9 +200,10 @@
                         android:layout_marginTop="10dp"
                         android:background="@color/transparent"
                         app:boxBackgroundColor="@color/transparent"
-                        android:hint="Your Email">
+                        android:hint="@string/email_et_hint">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/profile_details_edit_user_email"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:enabled="false"
@@ -208,15 +211,25 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
+                    <TextView
+                        android:id="@+id/profile_details_tv_alert"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:textColor="@color/alert_colour"
+                        android:layout_gravity="center">
 
+                    </TextView>
 
 
 
                     <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/profile_details_edit_edit_details"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginLeft="2dp"
-                        android:layout_marginTop="30dp"
+                        android:layout_marginTop="20dp"
                         android:clickable="true"
                         android:layout_marginBottom="2dp"
                         android:layout_marginRight="2dp"
@@ -231,7 +244,7 @@
                             android:layout_gravity="center"
                             android:fontFamily="@font/pt_serif"
                             android:gravity="center"
-                            android:text="Edit Profile Details"
+                            android:text="@string/edit_profile_btn"
                             android:textColor="#fff"></TextView>
 
                     </com.google.android.material.card.MaterialCardView>
@@ -253,12 +266,13 @@
 
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:id="@+id/profile_details_edit_update_password"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:fontFamily="@font/pt_serif"
                             android:gravity="center"
-                            android:text="Update Password"
+                            android:text="@string/update_password_btn"
                             android:textColor="@color/theme_black"></TextView>
 
 

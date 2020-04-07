@@ -48,7 +48,7 @@
                     android:layout_marginTop="15dp"
                     android:fontFamily="@font/pt_serif_bold"
                     android:gravity="center"
-                    android:text="Yum Recipes"
+                    android:text="@string/app_name_full"
                     android:textColor="@color/theme_black"
                     android:textSize="30dp">
 
@@ -70,6 +70,7 @@
 
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/login_or_signup_btn_create"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginLeft="30dp"
@@ -80,12 +81,13 @@
                     app:cardCornerRadius="25dp">
 
                     <TextView
+                        android:id="@+id/login_or_signup_tv_create_account"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:fontFamily="@font/pt_serif"
                         android:gravity="center"
-                        android:text="Create Account"
+                        android:text="@string/create_account_btn"
                         android:textColor="#fff"></TextView>
 
                 </com.google.android.material.card.MaterialCardView>
@@ -103,13 +105,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/pt_serif"
-                        android:text="Already have account? "></TextView>
+                        android:text="@string/have_account"></TextView>
 
                     <TextView
+                        android:id="@+id/login_or_signup_tv_login"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/pt_serif_bold"
-                        android:text=" Log in"></TextView>
+                        android:paddingLeft="10dp"
+                        android:text="@string/login_btn"></TextView>
                 </LinearLayout>
 
 

@@ -19,6 +19,7 @@
             android:gravity="center">
 
             <ImageView
+                android:id="@+id/category_item_img"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:src="@drawable/ic_toast">
@@ -26,13 +27,14 @@
             </ImageView>
 
             <TextView
+                android:id="@+id/category_item_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/pt_serif"
                 android:gravity="center"
-                android:text="Breakfast">
+                android:text="@string/breakfirst_tv">
 
             </TextView>
         </LinearLayout>

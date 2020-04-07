@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.google.android.material.card.MaterialCardView;
 
@@ -16,7 +17,9 @@ import com.google.android.material.card.MaterialCardView;
  * A simple {@link Fragment} subclass.
  */
 public class Menu extends Fragment {
+
     MaterialCardView single_recipe;
+    private EditText search_box;
 
     public Menu() {
         // Required empty public constructor
@@ -29,7 +32,10 @@ public class Menu extends Fragment {
         // Inflate the layout for this fragment
         final View v = inflater.inflate(R.layout.fragment_menu, container, false);
 
+        //UI Declare
         single_recipe = v.findViewById(R.id.single_recipe);
+        search_box = v.findViewById(R.id.menu_search_et_box);
+
         single_recipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -10,4 +10,6 @@
     <color name="theme_black">#15202b</color>
 
     <color name="transparent">#00000000</color>
+
+    <color name="alert_colour">#FB391E</color>
 </resources>

@@ -22,6 +22,7 @@
 
 
             <ImageView
+                android:id="@+id/single_recipes_recipes_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/resetpasswordbg"
@@ -64,6 +65,7 @@
 
 
                         <TextView
+                            android:id="@+id/single_recipes_back_btn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Back"
@@ -143,10 +145,11 @@
 
 
             <TextView
+                android:id="@+id/single_recipes_recipes_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/pt_serif_bold"
-                android:text="Recipe Name"
+                android:text="@string/recipes_name_et"
                 android:textColor="@color/theme_black"
                 android:textSize="24dp">
 
@@ -162,11 +165,12 @@
                             android:background="#c0c0c0"/>
                     </LinearLayout>
             <TextView
+                android:id="@+id/single_recipes_recipes_ingredients"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:textSize="18dp"
-                android:text="Ingredients, Ingredients, "></TextView>
+                android:text="@string/single_recipes_ingredients_et"></TextView>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -180,6 +184,7 @@
 
 
                     <TextView
+                        android:id="@+id/single_recipes_recipes_description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"

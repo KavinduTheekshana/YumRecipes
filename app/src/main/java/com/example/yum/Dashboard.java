@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.google.android.material.card.MaterialCardView;
@@ -18,6 +19,7 @@ import com.google.android.material.card.MaterialCardView;
  */
 public class Dashboard extends Fragment {
     MaterialCardView breakfast;
+    private EditText search_box;
 
     public Dashboard() {
         // Required empty public constructor
@@ -30,8 +32,10 @@ public class Dashboard extends Fragment {
         // Inflate the layout for this fragment
         final View v = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
-
+        //UI Declaration
         breakfast = v.findViewById(R.id.breakfast);
+        search_box = v.findViewById(R.id.dashboard_et_search);
+
 
         breakfast.setOnClickListener(new View.OnClickListener() {
             @Override

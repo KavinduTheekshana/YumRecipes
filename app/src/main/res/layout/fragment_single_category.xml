@@ -35,6 +35,7 @@
                 app:cardCornerRadius="23dp">
 
                 <ImageView
+                    android:id="@+id/single_category_tv_back"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitStart"
@@ -48,7 +49,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/pt_serif_bold"
-                android:text="Breakfast"
+                android:text="@string/category_name_tv"
                 android:textSize="35dp"
                 android:textColor="@color/theme_black">
             </TextView>

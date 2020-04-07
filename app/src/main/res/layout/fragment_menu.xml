@@ -22,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/pt_serif_bold"
-                android:text="Menu"
+                android:text="@string/menu_tv"
                 android:textSize="35dp"
                 android:textColor="@color/theme_black">
             </TextView>
@@ -37,12 +37,12 @@
                 app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/username"
+                    android:id="@+id/menu_search_et_box"
                     android:layout_width="match_parent"
                     android:inputType="textEmailAddress"
                     android:layout_height="wrap_content"
                     android:textColor="@color/theme_black"
-                    android:hint=" Hungry?"/>
+                    android:hint="@string/menu_search_et"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 

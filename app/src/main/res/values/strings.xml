@@ -12,4 +12,78 @@
 
     <string name="default_text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</string>
 
+    <!--login Dashboard -->
+    <string name="back_btn">Back</string>
+    <string name="signup_btn">Signup</string>
+    <string name="login_dash_quto">Welcome back to \nYum Recipes</string>
+    <string name="email_et_hint">Your Email</string>
+    <string name="password_et_hint">Password</string>
+    <string name="login_btn">Log In</string>
+    <string name="forget_password_tv">Forgot Password ?</string>
+
+    <!--login or Sign up Dashboard -->
+    <string name="app_name_full">Yum Recipes</string>
+    <string name="create_account_btn">Create Account</string>
+    <string name="have_account">Already have account? </string>
+
+    <!--Sign up Dashboard-->
+    <string name="signup_quto">"Let's Start making \ngood meal</string>
+    <string name="username_et_hint">Your Name</string>
+    <string name="re_password_et_hint">Re Enter Password</string>
+    <string name="signup_with_fb">   Sign Up With Facebook</string>
+
+    <!--Forget Password Dashboard-->
+    <string name="forget_pass_quto">Did someone forgot \ntheir password?</string>
+    <string name="submit_btn">Submit</string>
+
+    <!--Well Done Dashboard-->
+    <string name="well_done">Well Done!</string>
+    <string name="login_now_btn">Login Now</string>
+
+    <!--category_item Dashboard-->
+    <string name="breakfirst_tv">Breakfast</string>
+
+    <!--cookbook_item Dashboard-->
+    <string name="name_tv">Name</string>
+    <string name="description_tv">Description</string>
+    <string name="date_tv">Date</string>
+
+    <!--fragment_account Dashboard-->
+    <string name="recipes_tv">Recipes</string>
+    <string name="my_cook_book_tv">My Cookbook</string>
+
+    <!--fragment_add_recipes Dashboard-->
+    <string name="add_recipes_tv">Add Recipes</string>
+    <string name="recipes_name_et">Add Recipe Name</string>
+    <string name="recipes_ingredients_et">Add Ingredients</string>
+    <string name="recipes_description_et">Add Description</string>
+    <string name="recipes_submit_btn">Submit Recipes</string>
+
+    <!--fragment_current password Dashboard-->
+    <string name="current_password_tv">Current Password</string>
+    <string name="current_password_et">Your Current Password</string>
+
+    <!--fragment_single recipes Dashboard-->
+    <string name="single_recipes_ingredients_et">Ingredients, Ingredients </string>
+
+    <!--fragment_single category Dashboard-->
+    <string name="category_name_tv">Breakfast</string>
+
+    <!--fragment_password Re set Dashboard-->
+    <string name="passoerd_reset_tv">Reset Password</string>
+    <string name="new_password_et">Your New Password</string>
+    <string name="reset_password_btn">Reset Password</string>
+
+    <!--fragment_password Re set Dashboard-->
+    <string name="profile_details_tv">Profile Details</string>
+    <string name="edit_profile_btn">Edit Profile Details</string>
+    <string name="update_password_btn">Update Password</string>
+
+    <!--Menu Dashboard-->
+    <string name="menu_tv">Menu</string>
+    <string name="menu_search_et">Hungry?</string>
+
+    <!--fragment Dashboard-->
+    <string name="dashboard_search">Search</string>
+
 </resources>

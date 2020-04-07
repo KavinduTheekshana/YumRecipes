@@ -2,17 +2,37 @@ package com.example.yum;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
+
+import com.google.android.material.card.MaterialCardView;
 
 public class WellDoneActivity extends AppCompatActivity {
+
+    private MaterialCardView btn_login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_well_done);
 
+        //Ui Declare
+        ui_declare();
+
         hideSystemUI();
+
+        btn_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+            }
+        });
+    }
+
+    private void ui_declare() {
+        btn_login = findViewById(R.id.welldone_btn_login);
     }
 
 
