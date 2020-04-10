@@ -8,8 +8,9 @@
 
     <color name="theme_yellow">#ffb107</color>
     <color name="theme_black">#15202b</color>
+    <color name="theme_white">#fff</color>
 
     <color name="transparent">#00000000</color>
 
-    <color name="alert_colour">#FB391E</color>
+    <color name="alert_colour">#D33F49</color>
 </resources>

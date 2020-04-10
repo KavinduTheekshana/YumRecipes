@@ -261,8 +261,7 @@
                         app:cardElevation="5dp"
                         android:layout_marginLeft="2dp"
                         android:layout_marginRight="2dp"
-                        app:cardCornerRadius="25dp"
-                        android:layout_marginBottom="20dp">
+                        app:cardCornerRadius="25dp">
 
 
 
@@ -275,6 +274,37 @@
                             android:gravity="center"
                             android:text="@string/update_password_btn"
                             android:textColor="@color/theme_black"></TextView>
+
+
+
+
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/profile_details_edit_logout"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="15dp"
+                        android:clickable="true"
+                        android:elevation="2dp"
+                        app:cardElevation="5dp"
+                        android:backgroundTint="@color/alert_colour"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        app:cardCornerRadius="25dp"
+                        android:layout_marginBottom="100dp">
+
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/pt_serif"
+                            android:gravity="center"
+                            android:text="@string/log_out_btn"
+                            android:textColor="@color/theme_white"></TextView>
 
 
 

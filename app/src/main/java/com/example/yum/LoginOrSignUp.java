@@ -11,8 +11,8 @@ import com.google.android.material.card.MaterialCardView;
 
 public class LoginOrSignUp extends AppCompatActivity {
 
-    private MaterialCardView btn_create;
-    private TextView login;
+    private MaterialCardView login_or_signup_btn_login;
+    private TextView login_or_signup_tv_signup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,18 +25,18 @@ public class LoginOrSignUp extends AppCompatActivity {
         //full Screen Mode
         hideSystemUI();
 
-        //login
-        login.setOnClickListener(new View.OnClickListener() {
+        //signup
+        login_or_signup_tv_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+                startActivity(new Intent(LoginOrSignUp.this,SignupActivity.class));
             }
         });
 
-        btn_create.setOnClickListener(new View.OnClickListener() {
+        login_or_signup_btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),SignupActivity.class));
+                startActivity(new Intent(LoginOrSignUp.this,LoginActivity.class));
             }
         });
 
@@ -61,7 +61,7 @@ public class LoginOrSignUp extends AppCompatActivity {
 
     private void ui_declare()
     {
-        login = findViewById(R.id.login_or_signup_tv_login);
-        btn_create = findViewById(R.id.login_or_signup_btn_create);
+        login_or_signup_tv_signup = findViewById(R.id.login_or_signup_tv_signup);
+        login_or_signup_btn_login = findViewById(R.id.login_or_signup_btn_login);
     }
 }

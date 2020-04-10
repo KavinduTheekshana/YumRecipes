@@ -3,18 +3,28 @@ package com.example.yum;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.yum.Common.Stables;
 import com.google.android.material.card.MaterialCardView;
+
+import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
 
     private MaterialCardView btn_login;
-    private TextView go_back,go_signup,forget_password,alert_box;
+    private TextView go_back,forget_password,alert_box;
     private EditText user_email,user_password;
 
     @Override
@@ -31,15 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         go_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),LoginOrSignUp.class));
-            }
-        });
-
-        //go signup
-        go_signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),SignupActivity.class));
+                onBackPressed();
             }
         });
 
@@ -63,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
                 {
                     if (ValidateUserData.isValidmail(email))
                     {
-                        startActivity(new Intent(getApplicationContext(),DashboardActivity.class));
+                        ViewLoginActivity();
                     }else
                     {
                         alert_box.setText("Please Enter Valid Email");
@@ -77,9 +79,62 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    private void ViewLoginActivity() {
+
+        System.out.println(user_email.getText().toString() + user_password.getText().toString());
+        if (!user_email.getText().toString().isEmpty() && !user_password.getText().toString().isEmpty()){
+            //loading
+            RequestQueue requestQueue= Volley.newRequestQueue(this);
+            StringRequest stringRequest=new StringRequest(Request.Method.GET, new Stables().getLoginController(user_email.getText().toString().trim(),user_password.getText().toString().trim()), new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    System.out.println("XXXXXXXXXXXXXXXXXXXX");
+                    //hide loading
+                    try {
+                        JSONObject jsonObject=new JSONObject(response);
+
+                        if(jsonObject.getString("code").equals("1")){
+                            Toast.makeText(LoginActivity.this, jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+
+                            JSONObject userObj=jsonObject.getJSONObject("user");
+                            SharedPreferences sharedPreferences=getSharedPreferences("user",MODE_PRIVATE);
+                            SharedPreferences.Editor editor=sharedPreferences.edit();
+                            editor.putString("user_id",userObj.getString("id"));
+                            editor.putString("email",userObj.getString("email"));
+                            editor.commit();
+
+                            Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+                            startActivity(intent);
+
+                        }else if(jsonObject.getString("code").equals("2")){
+                            Toast.makeText(LoginActivity.this, "Your Blocked", Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            Toast.makeText(LoginActivity.this, jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+                        }
+                    }catch(Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener(){
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    //hide loading
+                    Toast.makeText(LoginActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            requestQueue.add(stringRequest);
+        }else {
+            Toast.makeText(this, "Please Enter Email and Password", Toast.LENGTH_SHORT).show();
+        }
+
+
+    }
+
     private void ui_declare() {
         go_back = findViewById(R.id.login_tv_back_select);
-        go_signup = findViewById(R.id.login_tv_go_signup);
         forget_password = findViewById(R.id.login_tv_forget_password);
         btn_login=findViewById(R.id.login_mc_login_btn);
         user_email = findViewById(R.id.login_et_user_email);

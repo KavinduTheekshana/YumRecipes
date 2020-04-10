@@ -24,7 +24,7 @@
     <!--login or Sign up Dashboard -->
     <string name="app_name_full">Yum Recipes</string>
     <string name="create_account_btn">Create Account</string>
-    <string name="have_account">Already have account? </string>
+    <string name="dont_have_account">"You haven't account?"</string>
 
     <!--Sign up Dashboard-->
     <string name="signup_quto">"Let's Start making \ngood meal</string>
@@ -78,6 +78,7 @@
     <string name="profile_details_tv">Profile Details</string>
     <string name="edit_profile_btn">Edit Profile Details</string>
     <string name="update_password_btn">Update Password</string>
+    <string name="log_out_btn">Logout</string>
 
     <!--Menu Dashboard-->
     <string name="menu_tv">Menu</string>

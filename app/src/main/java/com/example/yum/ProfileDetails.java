@@ -1,6 +1,8 @@
 package com.example.yum;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -26,7 +28,7 @@ import java.io.IOException;
  * A simple {@link Fragment} subclass.
  */
 public class ProfileDetails extends Fragment {
-    MaterialCardView profile_details_update_password,profile_details_update_details,profile_details_change_image;
+    MaterialCardView profile_details_update_password,profile_details_update_details,profile_details_change_image,profile_details_edit_logout;
 
     private EditText user_name,user_email;
     private TextView go_back,alert_box;
@@ -51,6 +53,7 @@ public class ProfileDetails extends Fragment {
         //UI Declare
         profile_details_update_password=v.findViewById(R.id.profile_details_update_password);
         profile_details_change_image = v.findViewById(R.id.profile_details_change_pro_pic);
+        profile_details_edit_logout = v.findViewById(R.id.profile_details_edit_logout);
         user_name = v.findViewById(R.id.profile_details_edit_user_name);
         user_email = v.findViewById(R.id.profile_details_edit_user_email);
         profile_details_update_details = v.findViewById(R.id.profile_details_edit_edit_details);
@@ -106,8 +109,25 @@ public class ProfileDetails extends Fragment {
             }
         });
 
+        profile_details_edit_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LogOut();
+            }
+        });
+
         return v;
 
+    }
+
+    private void LogOut() {
+        SharedPreferences preferences = this.getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.clear();
+        editor.apply();
+        Intent intent = new Intent(getActivity(), LoginOrSignUp.class);
+        startActivity(intent);
+        getActivity().finish();
     }
 
     @Override
