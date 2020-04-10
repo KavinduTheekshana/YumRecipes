@@ -61,7 +61,13 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (ValidateUserData.login_validate(email,password))
                 {
-                    startActivity(new Intent(getApplicationContext(),DashboardActivity.class));
+                    if (ValidateUserData.isValidmail(email))
+                    {
+                        startActivity(new Intent(getApplicationContext(),DashboardActivity.class));
+                    }else
+                    {
+                        alert_box.setText("Please Enter Valid Email");
+                    }
 
                 }else{
                     //Toast.makeText(LoginActivity.this,"Please Enter Details",Toast.LENGTH_SHORT).show();

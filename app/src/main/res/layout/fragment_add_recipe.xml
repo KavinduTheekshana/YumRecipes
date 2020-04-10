@@ -82,6 +82,7 @@
                     </FrameLayout>
 
                     <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/add_recipes_new_imageadd"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         app:cardCornerRadius="30dp"

@@ -52,7 +52,17 @@ public class SignupActivity extends AppCompatActivity {
 
                 if (ValidateUserData.signup_validate(name,email,password,re_password))
                 {
-                    startActivity(new Intent(getApplicationContext(),WellDoneActivity.class));
+                    if (ValidateUserData.isValidmail(email))
+                    {
+                        if (ValidateUserData.check_password_validate(password,re_password))
+                        {
+                            startActivity(new Intent(getApplicationContext(),WellDoneActivity.class));
+                        }else{
+                            alert_box.setText("Your Password isn't Same");
+                        }
+                    }else {
+                        alert_box.setText("Please Check Your Email");
+                    }
                 }else{
                     alert_box.setText("Please Complete All Details");
                 }

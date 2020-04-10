@@ -151,6 +151,7 @@
 
 
                         <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/profile_details_change_pro_pic"
                             android:layout_width="36dp"
                             android:layout_height="36dp"
                             android:padding="10dp"
