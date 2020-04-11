@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ForgotPasswordActivity"
+    tools:context=".VerificationActivity"
     android:orientation="vertical">
 
     <FrameLayout
@@ -19,7 +19,7 @@
             android:id="@+id/BlurImageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/forgotpasswordbg"
+            android:src="@drawable/verifybg"
             android:scaleType="centerCrop"/>
 
         <LinearLayout
@@ -58,7 +58,7 @@
 
 
                     <TextView
-                        android:id="@+id/forgetpass_tv_back"
+                        android:id="@+id/verify_tv_back"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/back_btn"
@@ -93,7 +93,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/pt_serif_bold"
-            android:text="Did someone forgot \ntheir password?"
+            android:text="Please fill here Using \nYour Code?"
             android:textColor="@color/theme_black"
             android:textSize="28dp">
 
@@ -118,14 +118,18 @@
                     android:layout_marginTop="10dp"
                     android:background="@color/transparent"
                     app:boxBackgroundColor="@color/transparent"
-                    android:hint="@string/email_et_hint">
+                    android:hint="@string/verification_et_hint">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/forgetpass_et_email"
+                        android:id="@+id/verify_et_code"
                         android:layout_width="match_parent"
-                        android:inputType="textEmailAddress"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/pt_serif" />
+                        android:fontFamily="@font/pt_serif"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textSize="20dp"
+                        android:inputType="number"
+                        android:maxLength="4" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -134,7 +138,7 @@
 
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/forgetpass_btn_reset"
+                    android:id="@+id/verify_btn_verify"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginLeft="2dp"
@@ -154,13 +158,13 @@
                         android:layout_gravity="center"
                         android:fontFamily="@font/pt_serif"
                         android:gravity="center"
-                        android:text="@string/submit_btn"
+                        android:text="@string/Verify_btn"
                         android:textColor="#fff"></TextView>
 
                 </com.google.android.material.card.MaterialCardView>
 
                 <TextView
-                    android:id="@+id/forgetpass_tv_alert"
+                    android:id="@+id/verify_tv_alert"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"

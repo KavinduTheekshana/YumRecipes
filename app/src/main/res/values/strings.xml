@@ -17,6 +17,7 @@
     <string name="signup_btn">Signup</string>
     <string name="login_dash_quto">Welcome back to \nYum Recipes</string>
     <string name="email_et_hint">Your Email</string>
+    <string name="verification_et_hint">Your Code Here</string>
     <string name="password_et_hint">Password</string>
     <string name="login_btn">Log In</string>
     <string name="forget_password_tv">Forgot Password ?</string>
@@ -35,6 +36,7 @@
     <!--Forget Password Dashboard-->
     <string name="forget_pass_quto">Did someone forgot \ntheir password?</string>
     <string name="submit_btn">Submit</string>
+    <string name="Verify_btn">Verify</string>
 
     <!--Well Done Dashboard-->
     <string name="well_done">Well Done!</string>

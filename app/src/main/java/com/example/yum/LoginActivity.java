@@ -2,11 +2,13 @@ package com.example.yum;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     private MaterialCardView btn_login;
     private TextView go_back,forget_password,alert_box;
     private EditText user_email,user_password;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +38,11 @@ public class LoginActivity extends AppCompatActivity {
         //Declare UI
         ui_declare();
 
+        //full screen
         hideSystemUI();
+
+        //progress
+        progressDialog=new Stables().showLoading(this);
 
         //go back
         go_back.setOnClickListener(new View.OnClickListener() {
@@ -49,7 +56,8 @@ public class LoginActivity extends AppCompatActivity {
         forget_password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),ForgotPasswordActivity.class));
+                startActivity(new Intent(LoginActivity.this,ForgotPasswordActivity.class)
+                        .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
             }
         });
 
@@ -81,14 +89,14 @@ public class LoginActivity extends AppCompatActivity {
 
     private void ViewLoginActivity() {
 
-        System.out.println(user_email.getText().toString() + user_password.getText().toString());
+        progressDialog.show();
+
         if (!user_email.getText().toString().isEmpty() && !user_password.getText().toString().isEmpty()){
-            //loading
+
             RequestQueue requestQueue= Volley.newRequestQueue(this);
             StringRequest stringRequest=new StringRequest(Request.Method.GET, new Stables().getLoginController(user_email.getText().toString().trim(),user_password.getText().toString().trim()), new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
-                    System.out.println("XXXXXXXXXXXXXXXXXXXX");
                     //hide loading
                     try {
                         JSONObject jsonObject=new JSONObject(response);
@@ -130,6 +138,7 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Please Enter Email and Password", Toast.LENGTH_SHORT).show();
         }
 
+        progressDialog.dismiss();
 
     }
 

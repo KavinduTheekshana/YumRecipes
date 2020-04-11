@@ -21,7 +21,7 @@ public class ResetPassword extends Fragment {
 
     private MaterialCardView btn_update_password;
     private TextView go_back,alert_box;
-    private EditText current_password,new_password;
+    private EditText new_password,re_new_password;
 
     public ResetPassword() {
         // Required empty public constructor
@@ -35,8 +35,8 @@ public class ResetPassword extends Fragment {
 
         //UI Declare
         go_back = v.findViewById(R.id.password_reset_back_btn);
-        current_password = v.findViewById(R.id.password_reset_new_password);
-        new_password = v.findViewById(R.id.password_reset_re_new_password);
+        new_password = v.findViewById(R.id.password_reset_new_password);
+        re_new_password = v.findViewById(R.id.password_reset_re_new_password);
         btn_update_password = v.findViewById(R.id.password_reset_update_password);
         alert_box = v.findViewById(R.id.password_reset_tv_alert);
 
@@ -53,12 +53,12 @@ public class ResetPassword extends Fragment {
             @Override
             public void onClick(View view) {
 
-                String password = current_password.getText().toString().trim();
+                String password_re = re_new_password.getText().toString().trim();
                 String password_new = new_password.getText().toString().trim();
 
-                if (ValidateUserData.update_password_validate(password,password_new)){
+                if (ValidateUserData.update_password_validate(password_re,password_new)){
 
-                    if (ValidateUserData.check_password_validate(password,password_new)){
+                    if (ValidateUserData.check_password_validate(password_re,password_new)){
 
                     }else {
                         alert_box.setText("Password Not Same");

@@ -1,5 +1,8 @@
 package com.example.yum.Common;
 
+import android.app.ProgressDialog;
+import android.content.Context;
+
 import java.net.URLEncoder;
 
 public class Stables {
@@ -23,4 +26,73 @@ public class Stables {
         }
         return url;
     }
+
+    public String EmailVerification(String email){
+        String url="";
+        try {
+            url=baseUrl+"api/verificationcode?"+"email="+ URLEncoder.encode(email,"utf-8");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return url;
+    }
+
+    public String CodeVerification(String email,String code){
+        String url="";
+        try {
+            url=baseUrl+"api/checkverificationcode?"+"email="+ URLEncoder.encode(email,"utf-8")+"&code="+URLEncoder.encode(code,"utf-8");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return url;
+    }
+
+    public String ResetPassword(String email,String password){
+        String url="";
+        try {
+            url=baseUrl+"api/resetpasswordmobile?"+"email="+ URLEncoder.encode(email,"utf-8")
+                    +"&password="+ URLEncoder.encode(password,"utf-8");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return url;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public ProgressDialog showLoading(Context context){
+        final ProgressDialog dialog=new ProgressDialog(context);
+        dialog.setTitle("Loading");
+        dialog.setMessage("Please wait until the process complete");
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        return dialog;
+    }
+
 }
