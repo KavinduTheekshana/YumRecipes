@@ -49,6 +49,7 @@
     <string name="name_tv">Name</string>
     <string name="description_tv">Description</string>
     <string name="date_tv">Date</string>
+    <string name="approved">Approved</string>
 
     <!--fragment_account Dashboard-->
     <string name="recipes_tv">Recipes</string>

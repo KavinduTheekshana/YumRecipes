@@ -8,6 +8,8 @@
 
 <LinearLayout
     android:id="@+id/main_dashboard"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -40,6 +42,7 @@
                 android:id="@+id/dashboard_et_search"
                 android:layout_width="match_parent"
                 android:inputType="textEmailAddress"
+                android:selectAllOnFocus="true"
                 android:layout_height="wrap_content"
                 android:textColor="@color/theme_black"
                 android:hint="@string/menu_search_et"/>
@@ -72,7 +75,10 @@
 
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/category_item_recycle"
             android:layout_width="match_parent"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:layout_height="wrap_content">
 
         </androidx.recyclerview.widget.RecyclerView>

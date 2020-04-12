@@ -3,16 +3,20 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cookbook_card"
         android:layout_width="match_parent"
         android:layout_marginLeft="2dp"
         android:layout_marginRight="2dp"
         android:clickable="true"
+        app:cardElevation="2dp"
+        android:elevation="5dp"
+        android:layout_marginBottom="5dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp">
+        android:layout_marginTop="5dp">
 
 
         <LinearLayout
@@ -74,6 +78,7 @@
                         android:layout_marginLeft="5dp"
                         android:fontFamily="@font/pt_serif"
                         android:text="@string/description_tv"
+                        android:maxLength="25"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                         android:textColor="@color/theme_black"
                         android:textSize="14dp" />
@@ -87,6 +92,20 @@
                         android:text="@string/date_tv"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                         android:textColor="@color/theme_black"
+                        android:textSize="12dp" />
+
+                    <TextView
+                        android:background="@color/approved_color"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:id="@+id/cookbook_tv_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:fontFamily="@font/pt_serif"
+                        android:text="@string/approved"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                        android:textColor="@color/theme_white"
                         android:textSize="12dp" />
 
 
@@ -107,7 +126,7 @@
                         android:layout_gravity="center"
                         android:layout_height="30dp"
                         android:src="@drawable/ic_heart"
-                        android:tint="@color/theme_yellow">
+                        android:tint="@color/alert_colour">
                     </ImageView>
 
 

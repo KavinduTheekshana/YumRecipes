@@ -6,7 +6,7 @@ import android.content.Context;
 import java.net.URLEncoder;
 
 public class Stables {
-    public static String baseUrl="http://192.168.8.101:8000/";
+    public static String baseUrl="http://192.168.8.100:8000/";
 
 
     public String getLoginController(String username,String password){
@@ -59,8 +59,13 @@ public class Stables {
     }
 
 
+    public String getCategoriesToList(){
+        return baseUrl+"api/getCategoryItem";
+    }
 
-
+    public String getCookBooksToList(String userid){
+        return baseUrl+"api/getcookbookitem?userid="+userid;
+    }
 
 
 
