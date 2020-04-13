@@ -18,10 +18,19 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.yum.Common.Stables;
 import com.google.android.material.card.MaterialCardView;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -94,6 +103,8 @@ public class ProfileDetails extends Fragment {
 
                 if (ValidateUserData.update_profile_validate(name,email)){
 
+                    ChangeProfileDetails();
+
                 }else{
                     alert_box.setText("Please Fill All Details");
                 }
@@ -122,6 +133,59 @@ public class ProfileDetails extends Fragment {
         LoadMainData();
 
         return v;
+
+    }
+
+    private void ChangeProfileDetails() {
+
+
+            SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
+            RequestQueue requestQueue= Volley.newRequestQueue(getContext());
+            StringRequest stringRequest=new StringRequest(Request.Method.GET, new Stables().ChangeProfileDetails(sharedPreferences.getString("user_id","0"),user_name.getText().toString().trim()), new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    //hide loading
+                    try {
+                        JSONObject jsonObject=new JSONObject(response);
+
+                        if(jsonObject.getString("code").equals("1")){
+
+                            Toast.makeText(getContext(), jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+
+                            JSONObject userObj = jsonObject.getJSONObject("user");
+                            SharedPreferences sharedPreferences=getActivity().getSharedPreferences("user",Context.MODE_PRIVATE);;
+                            SharedPreferences.Editor editor=sharedPreferences.edit();
+                            editor.putString("nameXXXX",userObj.getString("name"));
+                            editor.commit();
+                            LoadMainData();
+
+
+
+
+                        }
+                        else{
+                            Toast.makeText(getContext(), jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+                        }
+
+
+                    }catch(Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener(){
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                    Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            requestQueue.add(stringRequest);
+
+
+
+
 
     }
 

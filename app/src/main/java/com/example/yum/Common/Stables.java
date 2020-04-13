@@ -21,6 +21,10 @@ public class Stables {
         return baseUrl+"api/updatePasswordMobile"+"?uid="+uid+"&password="+password+"&confirm_password="+confirm_password;
     }
 
+    public String ChangeProfileDetails(String uid,String name){
+        return baseUrl+"api/changeprofiledetails"+"?uid="+uid+"&name="+name;
+    }
+
     public String getCheckLoginController(String id){
         return baseUrl+"api/checkLogin"+"?id="+id;
     }

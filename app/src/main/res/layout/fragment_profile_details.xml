@@ -191,6 +191,7 @@
                             android:id="@+id/profile_details_edit_user_name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:inputType="text"
                             android:fontFamily="@font/pt_serif" />
 
                     </com.google.android.material.textfield.TextInputLayout>
