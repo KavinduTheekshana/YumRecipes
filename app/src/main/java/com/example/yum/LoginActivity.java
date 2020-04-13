@@ -108,7 +108,9 @@ public class LoginActivity extends AppCompatActivity {
                             SharedPreferences sharedPreferences=getSharedPreferences("user",MODE_PRIVATE);
                             SharedPreferences.Editor editor=sharedPreferences.edit();
                             editor.putString("user_id",userObj.getString("id"));
+                            editor.putString("name",userObj.getString("name"));
                             editor.putString("email",userObj.getString("email"));
+                            editor.putString("profile_pic",userObj.getString("profile_pic"));
                             editor.commit();
 
                             Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);

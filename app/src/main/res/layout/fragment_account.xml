@@ -117,7 +117,7 @@
                     android:gravity="center"
                     android:layout_gravity="center"
                     android:layout_marginRight="10dp"
-                    android:text="73"></TextView>
+                    android:text="0"></TextView>
 
                 <TextView
                     android:layout_width="wrap_content"

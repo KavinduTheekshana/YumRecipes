@@ -19,7 +19,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.yum.Common.Stables;
 import com.google.android.material.card.MaterialCardView;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 
@@ -116,8 +118,18 @@ public class ProfileDetails extends Fragment {
             }
         });
 
+
+        LoadMainData();
+
         return v;
 
+    }
+
+    private void LoadMainData() {
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
+        user_name.setText(sharedPreferences.getString("name","0"));
+        user_email.setText(sharedPreferences.getString("email","0"));
+        Picasso.get().load(Stables.baseUrl+ sharedPreferences.getString("profile_pic","0")).into(user_profile_pic);
     }
 
     private void LogOut() {

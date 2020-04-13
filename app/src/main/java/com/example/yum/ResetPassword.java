@@ -1,5 +1,8 @@
 package com.example.yum;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,8 +13,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.yum.Common.Stables;
 import com.google.android.material.card.MaterialCardView;
+
+import org.json.JSONObject;
 
 
 /**
@@ -60,6 +73,8 @@ public class ResetPassword extends Fragment {
 
                     if (ValidateUserData.check_password_validate(password_re,password_new)){
 
+                        reserPassword();
+
                     }else {
                         alert_box.setText("Password Not Same");
                     }
@@ -74,5 +89,56 @@ public class ResetPassword extends Fragment {
 
         // Inflate the layout for this fragment
         return v;
+    }
+
+    private void reserPassword() {
+
+        if (!re_new_password.getText().toString().isEmpty() && !new_password.getText().toString().isEmpty()){
+
+            SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
+            RequestQueue requestQueue= Volley.newRequestQueue(getContext());
+            StringRequest stringRequest=new StringRequest(Request.Method.GET, new Stables().UpdatePasswordController(sharedPreferences.getString("user_id","0"),new_password.getText().toString().trim(),re_new_password.getText().toString().trim()), new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    //hide loading
+                    try {
+                        JSONObject jsonObject=new JSONObject(response);
+
+                        if(jsonObject.getString("code").equals("1")){
+
+                            Account account = new Account();
+                            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in,R.anim.fade_out);
+                            fragmentTransaction.replace(R.id.container,account).commit();
+
+                            Toast.makeText(getContext(), jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+
+                        }else if(jsonObject.getString("code").equals("0")){
+                            Toast.makeText(getContext(), jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            Toast.makeText(getContext(), jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+                        }
+
+
+                    }catch(Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener(){
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                    Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            requestQueue.add(stringRequest);
+        }else {
+            Toast.makeText(getContext(), "Please Enter Email and Password", Toast.LENGTH_SHORT).show();
+        }
+
+
+
     }
 }

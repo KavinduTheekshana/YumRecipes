@@ -37,6 +37,7 @@ import com.example.yum.adapters.MyCookBookAdapter;
 import com.example.yum.models.MyCookBook;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.card.MaterialCardView;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -90,6 +91,8 @@ public class Account extends Fragment{
 
         loadCookBook();
 
+        LoadMainData();
+
 
 
 
@@ -109,6 +112,13 @@ public class Account extends Fragment{
 
         // Inflate the layout for this fragment
         return v;
+    }
+
+    private void LoadMainData() {
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
+        user_name.setText(sharedPreferences.getString("name","0"));
+        user_email.setText(sharedPreferences.getString("email","0"));
+        Picasso.get().load(Stables.baseUrl+ sharedPreferences.getString("profile_pic","0")).into(user_profile_pic);
     }
 
     private void loadCookBook() {

@@ -6,11 +6,19 @@ import android.content.Context;
 import java.net.URLEncoder;
 
 public class Stables {
-    public static String baseUrl="http://192.168.8.100:8000/";
+    public static String baseUrl="http://192.168.8.102:8000/";
 
 
     public String getLoginController(String username,String password){
         return baseUrl+"api/mobilelogin?username="+username+"&password="+password;
+    }
+
+    public String CurrentPassword(String uid,String password){
+        return baseUrl+"api/currentpassword?uid="+uid+"&password="+password;
+    }
+
+    public String UpdatePasswordController(String uid,String password,String confirm_password){
+        return baseUrl+"api/updatePasswordMobile"+"?uid="+uid+"&password="+password+"&confirm_password="+confirm_password;
     }
 
     public String getCheckLoginController(String id){
