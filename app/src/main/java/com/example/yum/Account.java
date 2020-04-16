@@ -34,6 +34,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.yum.Common.Stables;
 import com.example.yum.adapters.MyCookBookAdapter;
+import com.example.yum.models.Menus;
 import com.example.yum.models.MyCookBook;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.card.MaterialCardView;
@@ -59,7 +60,7 @@ public class Account extends Fragment{
     private TextView user_name,user_email,user_recipes_count;
 
     RecyclerView recyclerViewProduct;
-    public ArrayList<MyCookBook> myCookBooks;
+    public ArrayList<Menus> menusList;
     MyCookBookAdapter myCookBookAdapter;
     ProgressDialog progressDialog;
     SharedPreferences sharedPreferences;
@@ -86,7 +87,7 @@ public class Account extends Fragment{
         user_email = v.findViewById(R.id.account_tv_user_email);
         user_recipes_count = v.findViewById(R.id.account_tv_recipes_count);
 
-        myCookBooks = new ArrayList<>();
+        menusList = new ArrayList<>();
         recyclerViewProduct=v.findViewById(R.id.account_my_cook_book);
 
         loadCookBook();
@@ -122,7 +123,7 @@ public class Account extends Fragment{
     }
 
     private void loadCookBook() {
-        myCookBookAdapter = new MyCookBookAdapter(this,myCookBooks,getContext());
+        myCookBookAdapter = new MyCookBookAdapter(this,menusList,getContext());
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
         recyclerViewProduct.setLayoutManager(mLayoutManager);
         recyclerViewProduct.setItemAnimator(new DefaultItemAnimator());
@@ -142,15 +143,17 @@ public class Account extends Fragment{
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         JSONObject jsonObject = response.getJSONObject(i);
-                        MyCookBook mcb = new MyCookBook();
-                        mcb.setId(jsonObject.getString("id"));
-                        mcb.setName(jsonObject.getString("recipename"));
-                        mcb.setDescription(Jsoup.parse(jsonObject.getString("recipedescription")).text());
-                        mcb.setDate(jsonObject.getString("date"));
-                        mcb.setLikes(jsonObject.getString("recipeslikes"));
-                        mcb.setImage(jsonObject.getString("recipeimage"));
-                        mcb.setStatus(jsonObject.getString("recipestatus"));
-                        myCookBooks.add(mcb);
+                        Menus menus = new Menus();
+                        menus.setId(jsonObject.getString("id"));
+                        menus.setRecipename(jsonObject.getString("recipename"));
+                        menus.setCategoryname(jsonObject.getString("categoryname"));
+                        menus.setRecipeingredients(jsonObject.getString("recipeingredients"));
+                        menus.setRecipedescription(Jsoup.parse(jsonObject.getString("recipedescription")).text());
+                        menus.setRecipeimage(jsonObject.getString("recipeimage"));
+                        menus.setUserimage(jsonObject.getString("userimage"));
+                        menus.setRecipeslikes(jsonObject.getString("recipeslikes"));
+                        menus.setRecipestatus(jsonObject.getString("recipestatus"));
+                        menusList.add(menus);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -176,7 +179,7 @@ public class Account extends Fragment{
 
     public void RecipeCount(){
         int count=0;
-        for(MyCookBook myCookBook:myCookBooks){
+        for(Menus menus:menusList){
             count++;
         }
         user_recipes_count.setText(String.valueOf(count));

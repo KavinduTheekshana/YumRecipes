@@ -1,6 +1,7 @@
 package com.example.yum.adapters;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,12 +10,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yum.Account;
 import com.example.yum.Common.Stables;
+import com.example.yum.Menu;
 import com.example.yum.R;
+import com.example.yum.SingleRecipe;
+import com.example.yum.models.Menus;
 import com.example.yum.models.MyCookBook;
 import com.google.android.material.card.MaterialCardView;
 import com.squareup.picasso.Picasso;
@@ -23,12 +29,12 @@ import java.util.List;
 
 public class MyCookBookAdapter extends RecyclerView.Adapter<MyCookBookAdapter.MyCookBookViewHolder> {
     Account account;
-    private List<MyCookBook> myCookBooks;
+    private List<Menus> menusList;
     Context mContext;
 
-    public MyCookBookAdapter(Account account, List<MyCookBook> myCookBooks, Context mContext) {
+    public MyCookBookAdapter(Account account, List<Menus> menusList, Context mContext) {
         this.account = account;
-        this.myCookBooks = myCookBooks;
+        this.menusList = menusList;
         this.mContext = mContext;
     }
 
@@ -62,13 +68,13 @@ public class MyCookBookAdapter extends RecyclerView.Adapter<MyCookBookAdapter.My
         //animation
         holder.cookbook_card.setAnimation(AnimationUtils.loadAnimation(mContext,R.anim.fade_transition_animation));
 
-        MyCookBook myCookBook = myCookBooks.get(position);
-        holder.cookbook_tv_name.setText(myCookBook.getName());
-        holder.cookbook_tv_description.setText(myCookBook.getDescription()+"...");
-        holder.cookbook_tv_date.setText(myCookBook.getDate());
-        holder.cookbook_tv_like_count.setText(myCookBook.getLikes());
-        Picasso.get().load(Stables.baseUrl+ myCookBook.getImage()).into(holder.cookbook_item_img);
-        if (Integer.parseInt(myCookBook.getStatus())==1){
+        final Menus menus = menusList.get(position);
+        holder.cookbook_tv_name.setText(menus.getRecipename());
+        holder.cookbook_tv_description.setText(menus.getRecipedescription()+"...");
+        holder.cookbook_tv_date.setText(menus.getDate());
+        holder.cookbook_tv_like_count.setText(menus.getRecipeslikes());
+        Picasso.get().load(Stables.baseUrl+ menus.getRecipeimage()).into(holder.cookbook_item_img);
+        if (Integer.parseInt(menus.getRecipestatus())==1){
             holder.cookbook_tv_status.setText("Approved");
             holder.cookbook_tv_status.setBackgroundResource(R.color.approved_color);
         }else {
@@ -76,12 +82,30 @@ public class MyCookBookAdapter extends RecyclerView.Adapter<MyCookBookAdapter.My
             holder.cookbook_tv_status.setBackgroundResource(R.color.alert_colour);
         }
 
+        holder.cookbook_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString("id",menus.getId());
+                bundle.putString("name",menus.getRecipename());
+                bundle.putString("category",menus.getCategoryname());
+                bundle.putString("ingredients",menus.getRecipeingredients());
+                bundle.putString("description",menus.getRecipedescription());
+                bundle.putString("image",menus.getRecipeimage());
+                bundle.putString("user_image",menus.getUserimage());
+
+                AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                Fragment myFragment = new SingleRecipe();
+                myFragment.setArguments(bundle);
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.container, myFragment).addToBackStack(null).commit();
+            }
+        });
 
     }
 
     @Override
     public int getItemCount() {
-        return myCookBooks.size();
+        return menusList.size();
     }
 
 

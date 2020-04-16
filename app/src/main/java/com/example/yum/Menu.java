@@ -210,9 +210,11 @@ public class Menu extends Fragment {
                             if (filterPrefix == "0") {
                                 menu.setId(jsonObject.getString("id"));
                                 menu.setRecipename(jsonObject.getString("recipename"));
+                                menu.setCategoryname(jsonObject.getString("categoryname"));
                                 menu.setRecipeingredients(jsonObject.getString("recipeingredients"));
                                 menu.setRecipedescription(Jsoup.parse(jsonObject.getString("recipedescription")).text());
                                 menu.setRecipeimage(jsonObject.getString("recipeimage"));
+                                menu.setUserimage(jsonObject.getString("userimage"));
                                 menu.setRecipeslikes(jsonObject.getString("recipeslikes"));
 
                                 menuslist.add(menu);
@@ -221,9 +223,11 @@ public class Menu extends Fragment {
 
                                 menu.setId(jsonObject.getString("id"));
                                 menu.setRecipename(jsonObject.getString("recipename"));
+                                menu.setCategoryname(jsonObject.getString("categoryname"));
                                 menu.setRecipeingredients(jsonObject.getString("recipeingredients"));
                                 menu.setRecipedescription(Jsoup.parse(jsonObject.getString("recipedescription")).text());
                                 menu.setRecipeimage(jsonObject.getString("recipeimage"));
+                                menu.setUserimage(jsonObject.getString("userimage"));
                                 menu.setRecipeslikes(jsonObject.getString("recipeslikes"));
 
                                 menuslist.add(menu);
