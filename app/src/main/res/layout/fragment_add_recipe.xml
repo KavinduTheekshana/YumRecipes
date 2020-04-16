@@ -119,6 +119,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/add_recipes_et_recipe_name"
                         android:layout_width="match_parent"
+                        android:inputType="text"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/pt_serif" />
 
@@ -158,12 +159,15 @@
                         android:id="@+id/add_recipes_et_recipe_description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textMultiLine"
+                        android:inputType="text|textMultiLine"
                         android:scrollbars="vertical"
                         android:lines="8"
                         android:fontFamily="@font/pt_serif" />
 
                 </com.google.android.material.textfield.TextInputLayout>
+
+
+
 
 
 

@@ -1,13 +1,16 @@
 package com.example.yum;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -15,6 +18,7 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -44,11 +48,15 @@ public class ProfileDetails extends Fragment {
     private EditText user_name,user_email;
     private TextView go_back,alert_box;
     private ImageView user_profile_pic;
+    Bitmap bitmap;
+    private static final int PERMISSION_REQUEST = 1;
+    private static final int IMAGE_REQUEST = 2;
+
 
     //imagepart
-    private static final int RESULT_CODE_REQUEST =101;
-    private Uri imageuri;
-    private Boolean isImageAdded=false;
+//    private static final int RESULT_CODE_REQUEST =101;
+//    private Uri imageuri;
+//    private Boolean isImageAdded=false;
 
     public ProfileDetails() {
         // Required empty public constructor
@@ -63,15 +71,32 @@ public class ProfileDetails extends Fragment {
 
         //UI Declare
         profile_details_update_password=v.findViewById(R.id.profile_details_update_password);
-        profile_details_change_image = v.findViewById(R.id.profile_details_change_pro_pic);
         profile_details_edit_logout = v.findViewById(R.id.profile_details_edit_logout);
         user_name = v.findViewById(R.id.profile_details_edit_user_name);
         user_email = v.findViewById(R.id.profile_details_edit_user_email);
-        profile_details_update_details = v.findViewById(R.id.profile_details_edit_edit_details);
         go_back = v.findViewById(R.id.profile_details_edit_back);
-        user_profile_pic = v.findViewById(R.id.profile_details_edit_user_name_image);
         alert_box = v.findViewById(R.id.profile_details_tv_alert);
 
+        //----------------------------------------------------------------------------------------------------
+        profile_details_update_details = v.findViewById(R.id.profile_details_edit_edit_details);
+        user_profile_pic = v.findViewById(R.id.profile_details_edit_user_name_image);
+        profile_details_change_image = v.findViewById(R.id.profile_details_change_pro_pic);
+
+        profile_details_change_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayFileChoose();
+            }
+        });
+
+        profile_details_update_details.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ImageUpload();
+            }
+        });
+
+        //-----------------------------------------------------------------------------------------------
 
         //Current Password
         profile_details_update_password.setOnClickListener(new View.OnClickListener() {
@@ -94,33 +119,43 @@ public class ProfileDetails extends Fragment {
             }
         });
 
-        profile_details_update_details.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                String name = user_name.getText().toString().trim();
-                String email = user_email.getText().toString().trim();
+//        if (Build.VERSION.SDK_INT>=23){
+//            if(getActivity().checkPermission()){
+//
+//            }else {
+//                requestPermissions();
+//            }
+//        }
 
-                if (ValidateUserData.update_profile_validate(name,email)){
+        //BUTTON----------------------------------------------------------------------------------
+//        profile_details_update_details.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                String name = user_name.getText().toString().trim();
+//                String email = user_email.getText().toString().trim();
+//
+//                if (ValidateUserData.update_profile_validate(name,email)){
+//
+//                    ChangeProfileDetails();
+//
+//                }else{
+//                    alert_box.setText("Please Fill All Details");
+//                }
+//            }
+//        });
 
-                    ChangeProfileDetails();
 
-                }else{
-                    alert_box.setText("Please Fill All Details");
-                }
-            }
-        });
-
-
-        profile_details_change_image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(intent,RESULT_CODE_REQUEST);
-            }
-        });
+//        profile_details_change_image.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent();
+//                intent.setType("image/*");
+//                intent.setAction(Intent.ACTION_GET_CONTENT);
+//                startActivityForResult(intent,RESULT_CODE_REQUEST);
+//            }
+//        });
 
         profile_details_edit_logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,6 +169,22 @@ public class ProfileDetails extends Fragment {
 
         return v;
 
+    }
+
+//    private void requestPermission(){
+//        if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+//            Toast.makeText(getContext(), "Please Allow The Permission", Toast.LENGTH_SHORT).show();
+//        }else {
+//            ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},PERMISSION_REQUEST);
+//        }
+//    }
+
+
+
+    private void ImageUpload() {
+    }
+
+    private void displayFileChoose() {
     }
 
     private void ChangeProfileDetails() {
@@ -155,7 +206,7 @@ public class ProfileDetails extends Fragment {
                             JSONObject userObj = jsonObject.getJSONObject("user");
                             SharedPreferences sharedPreferences=getActivity().getSharedPreferences("user",Context.MODE_PRIVATE);;
                             SharedPreferences.Editor editor=sharedPreferences.edit();
-                            editor.putString("nameXXXX",userObj.getString("name"));
+                            editor.putString("name",userObj.getString("name"));
                             editor.commit();
                             LoadMainData();
 
@@ -206,21 +257,21 @@ public class ProfileDetails extends Fragment {
         getActivity().finish();
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (requestCode==RESULT_CODE_REQUEST && data!=null)
-        {
-            imageuri=data.getData();
-            isImageAdded=true;
-
-            Bitmap bitmap = null;
-            try {
-                bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(),imageuri);
-                user_profile_pic.setImageBitmap(bitmap);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        super.onActivityResult(requestCode, resultCode, data);
-    }
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        if (requestCode==RESULT_CODE_REQUEST && data!=null)
+//        {
+//            imageuri=data.getData();
+//            isImageAdded=true;
+//
+//            Bitmap bitmap = null;
+//            try {
+//                bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(),imageuri);
+//                user_profile_pic.setImageBitmap(bitmap);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        super.onActivityResult(requestCode, resultCode, data);
+//    }
 }

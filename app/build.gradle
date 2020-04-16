@@ -38,7 +38,11 @@ dependencies {
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
 
+    implementation 'com.karumi:dexter:5.0.0'
+
     implementation 'com.android.volley:volley:1.1.1'
 
     implementation 'org.jsoup:jsoup:1.13.1'
+
+    implementation 'com.weiwangcn.betterspinner:library:1.1.0'
 }

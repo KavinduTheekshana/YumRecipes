@@ -65,6 +65,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
         holder.category_item_name.setText(categories.getName());
         Picasso.get().load(Stables.baseUrl+ categories.getImage()).into(holder.category_item_img);
 
+
     }
 
     @Override

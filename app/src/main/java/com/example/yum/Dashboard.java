@@ -41,7 +41,7 @@ import java.util.ArrayList;
  * A simple {@link Fragment} subclass.
  */
 public class Dashboard extends Fragment {
-    private EditText search_box;
+
     RecyclerView recyclerViewProduct;
     public ArrayList<Categories> categories;
     CategoriesAdapter categoriesAdapter;
@@ -60,7 +60,7 @@ public class Dashboard extends Fragment {
         final View v = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
         //UI Declaration
-        search_box = v.findViewById(R.id.dashboard_et_search);
+//        search_box = v.findViewById(R.id.dashboard_et_search);
 
         //progress
         progressDialog=new Stables().showLoading(getActivity());

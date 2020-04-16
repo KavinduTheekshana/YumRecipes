@@ -71,12 +71,39 @@ public class Stables {
     }
 
 
+    public String AddRecipesToDB(String uid, String recipes_name, String recipes_ingrediants,String recipes_description){
+        String url="";
+        try {
+            url=baseUrl+"api/saverecipesmobile?"+"uid="+ URLEncoder.encode(uid,"utf-8")+
+                    "&recipes_name="+URLEncoder.encode(recipes_name,"utf-8")+
+                    "&recipes_ingrediants="+URLEncoder.encode(recipes_ingrediants,"utf-8")+
+                    "&recipes_description="+URLEncoder.encode(recipes_description,"utf-8");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return url;
+    }
+
+    public String AddRecipesToDBUrl(){
+        String url="";
+        try {
+            url=baseUrl+"api/saverecipesmobile";
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return url;
+    }
+
     public String getCategoriesToList(){
         return baseUrl+"api/getCategoryItem";
     }
 
     public String getCookBooksToList(String userid){
         return baseUrl+"api/getcookbookitem?userid="+userid;
+    }
+
+    public String MenuItems(){
+        return baseUrl+"api/menus";
     }
 
 
