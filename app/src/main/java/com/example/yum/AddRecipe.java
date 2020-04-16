@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.provider.MediaStore;
 import android.util.Base64;
@@ -92,6 +93,9 @@ public class AddRecipe extends Fragment {
                 if (ValidateUserData.add_recipes_validate(name,ingredients,description)){
 
                     AddRecipeToDB();
+                    recipes_name.setText(null);
+                    recipes_description.setText(null);
+                    recipes_ingrediants.setText(null);
 
                 }else {
                     alert_box.setText("Please Complete Details");
@@ -144,18 +148,8 @@ public class AddRecipe extends Fragment {
                public void onResponse(JSONObject response) {
                     try {
 
-                        System.out.println(response.toString());
+                        Toast.makeText(getActivity(), "Recipe Added Successfully", Toast.LENGTH_SHORT).show();
 
-//                        JSONObject jsonObject=response;
-//
-//                        if(jsonObject.getString("code").equals("1")){
-//
-//                            Toast.makeText(getContext(), jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
-//
-//                        }
-//                        else{
-//                            Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
-//                        }
                     }catch(Exception ex){}
                }
            }, new Response.ErrorListener() {

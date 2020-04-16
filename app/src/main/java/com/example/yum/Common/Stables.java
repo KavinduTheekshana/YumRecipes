@@ -25,6 +25,16 @@ public class Stables {
         return baseUrl+"api/changeprofiledetails"+"?uid="+uid+"&name="+name;
     }
 
+    public String ChangeProfileDetailsURL(){
+        String url="";
+        try {
+            url=baseUrl+"api/changeprofiledetails";
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return url;
+    }
+
     public String getCheckLoginController(String id){
         return baseUrl+"api/checkLogin"+"?id="+id;
     }

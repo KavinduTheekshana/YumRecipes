@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.yum.Common.Stables;
@@ -36,6 +38,7 @@ import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 
@@ -48,15 +51,15 @@ public class ProfileDetails extends Fragment {
     private EditText user_name,user_email;
     private TextView go_back,alert_box;
     private ImageView user_profile_pic;
-    Bitmap bitmap;
     private static final int PERMISSION_REQUEST = 1;
     private static final int IMAGE_REQUEST = 2;
 
 
     //imagepart
-//    private static final int RESULT_CODE_REQUEST =101;
-//    private Uri imageuri;
-//    private Boolean isImageAdded=false;
+    private static final int RESULT_CODE_REQUEST =101;
+    private Uri imageuri;
+    private Boolean isImageAdded=false;
+    Bitmap bitmap = null;
 
     public ProfileDetails() {
         // Required empty public constructor
@@ -82,20 +85,6 @@ public class ProfileDetails extends Fragment {
         user_profile_pic = v.findViewById(R.id.profile_details_edit_user_name_image);
         profile_details_change_image = v.findViewById(R.id.profile_details_change_pro_pic);
 
-        profile_details_change_image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                displayFileChoose();
-            }
-        });
-
-        profile_details_update_details.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ImageUpload();
-            }
-        });
-
         //-----------------------------------------------------------------------------------------------
 
         //Current Password
@@ -119,43 +108,38 @@ public class ProfileDetails extends Fragment {
             }
         });
 
+        profile_details_change_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(intent,RESULT_CODE_REQUEST);
+            }
+        });
 
-//        if (Build.VERSION.SDK_INT>=23){
-//            if(getActivity().checkPermission()){
-//
-//            }else {
-//                requestPermissions();
-//            }
-//        }
+
 
         //BUTTON----------------------------------------------------------------------------------
-//        profile_details_update_details.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                String name = user_name.getText().toString().trim();
-//                String email = user_email.getText().toString().trim();
-//
-//                if (ValidateUserData.update_profile_validate(name,email)){
-//
-//                    ChangeProfileDetails();
-//
-//                }else{
-//                    alert_box.setText("Please Fill All Details");
-//                }
-//            }
-//        });
+        profile_details_update_details.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String name = user_name.getText().toString().trim();
+                String email = user_email.getText().toString().trim();
+
+                if (ValidateUserData.update_profile_validate(name,email)){
+
+                    ChangeProfileDetails();
+
+                }else{
+                    alert_box.setText("Please Fill All Details");
+                }
+            }
+        });
 
 
-//        profile_details_change_image.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent();
-//                intent.setType("image/*");
-//                intent.setAction(Intent.ACTION_GET_CONTENT);
-//                startActivityForResult(intent,RESULT_CODE_REQUEST);
-//            }
-//        });
+
 
         profile_details_edit_logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -171,70 +155,107 @@ public class ProfileDetails extends Fragment {
 
     }
 
-//    private void requestPermission(){
-//        if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)){
-//            Toast.makeText(getContext(), "Please Allow The Permission", Toast.LENGTH_SHORT).show();
-//        }else {
-//            ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},PERMISSION_REQUEST);
-//        }
-//    }
 
-
-
-    private void ImageUpload() {
-    }
-
-    private void displayFileChoose() {
-    }
 
     private void ChangeProfileDetails() {
 
 
+        try {
+
             SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
             RequestQueue requestQueue= Volley.newRequestQueue(getContext());
-            StringRequest stringRequest=new StringRequest(Request.Method.GET, new Stables().ChangeProfileDetails(sharedPreferences.getString("user_id","0"),user_name.getText().toString().trim()), new Response.Listener<String>() {
+
+            JSONObject jsonBody = new JSONObject();
+
+            jsonBody.put("name", user_name.getText().toString().trim());
+            jsonBody.put("uid", sharedPreferences.getString("user_id","0"));
+
+            if(bitmap!=null){
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+                String encodedImage = Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT);
+                System.out.println(encodedImage);
+                jsonBody.put("image", encodedImage);
+            }
+
+
+            JsonObjectRequest jsonOblectReq = new JsonObjectRequest(new Stables().ChangeProfileDetailsURL(), jsonBody, new Response.Listener<JSONObject>() {
+
                 @Override
-                public void onResponse(String response) {
-                    //hide loading
+                public void onResponse(JSONObject response) {
                     try {
-                        JSONObject jsonObject=new JSONObject(response);
 
-                        if(jsonObject.getString("code").equals("1")){
+                        Toast.makeText(getActivity(), "Recipe Added Successfully", Toast.LENGTH_SHORT).show();
 
-                            Toast.makeText(getContext(), jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
-
-                            JSONObject userObj = jsonObject.getJSONObject("user");
+                            JSONObject userObj = response.getJSONObject("user");
                             SharedPreferences sharedPreferences=getActivity().getSharedPreferences("user",Context.MODE_PRIVATE);;
                             SharedPreferences.Editor editor=sharedPreferences.edit();
                             editor.putString("name",userObj.getString("name"));
+                            editor.putString("profile_pic",userObj.getString("profile_pic"));
                             editor.commit();
                             LoadMainData();
 
-
-
-
-                        }
-                        else{
-                            Toast.makeText(getContext(), jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
-                        }
-
-
-                    }catch(Exception e){
-                        e.printStackTrace();
-                    }
+                    }catch(Exception ex){}
                 }
-            }, new Response.ErrorListener(){
-
+            }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
 
-                    Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
+            requestQueue.add(jsonOblectReq);
+        }catch(Exception e){}
 
-            requestQueue.add(stringRequest);
 
 
+
+
+
+//        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
+//            RequestQueue requestQueue= Volley.newRequestQueue(getContext());
+//            StringRequest stringRequest=new StringRequest(Request.Method.GET, new Stables().ChangeProfileDetails(sharedPreferences.getString("user_id","0"),user_name.getText().toString().trim()), new Response.Listener<String>() {
+//                @Override
+//                public void onResponse(String response) {
+//                    //hide loading
+//                    try {
+//                        JSONObject jsonObject=new JSONObject(response);
+//
+//                        if(jsonObject.getString("code").equals("1")){
+//
+//                            Toast.makeText(getContext(), jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+//
+//                            JSONObject userObj = jsonObject.getJSONObject("user");
+//                            SharedPreferences sharedPreferences=getActivity().getSharedPreferences("user",Context.MODE_PRIVATE);;
+//                            SharedPreferences.Editor editor=sharedPreferences.edit();
+//                            editor.putString("name",userObj.getString("name"));
+//                            editor.commit();
+//                            LoadMainData();
+//
+//
+//
+//
+//                        }
+//                        else{
+//                            Toast.makeText(getContext(), jsonObject.getString("msg"), Toast.LENGTH_SHORT).show();
+//                        }
+//
+//
+//                    }catch(Exception e){
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }, new Response.ErrorListener(){
+//
+//                @Override
+//                public void onErrorResponse(VolleyError error) {
+//
+//                    Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+//                }
+//            });
+//
+//            requestQueue.add(stringRequest);
+//
+//
 
 
 
@@ -257,21 +278,20 @@ public class ProfileDetails extends Fragment {
         getActivity().finish();
     }
 
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        if (requestCode==RESULT_CODE_REQUEST && data!=null)
-//        {
-//            imageuri=data.getData();
-//            isImageAdded=true;
-//
-//            Bitmap bitmap = null;
-//            try {
-//                bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(),imageuri);
-//                user_profile_pic.setImageBitmap(bitmap);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        super.onActivityResult(requestCode, resultCode, data);
-//    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode==RESULT_CODE_REQUEST && data!=null)
+        {
+            imageuri=data.getData();
+            isImageAdded=true;
+
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(),imageuri);
+                user_profile_pic.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 }
