@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.yum.Account;
 import com.example.yum.Common.Stables;
 import com.example.yum.Dashboard;
+import com.example.yum.Menu;
 import com.example.yum.R;
 import com.example.yum.models.Categories;
 import com.example.yum.models.MyCookBook;
@@ -64,6 +65,13 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
 
         holder.category_item_name.setText(categories.getName());
         Picasso.get().load(Stables.baseUrl+ categories.getImage()).into(holder.category_item_img);
+
+        holder.category_item_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
 
     }
