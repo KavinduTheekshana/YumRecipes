@@ -6,7 +6,7 @@ import android.content.Context;
 import java.net.URLEncoder;
 
 public class Stables {
-    public static String baseUrl="http://192.168.8.102:8000/";
+    public static String baseUrl="http://192.168.8.100:8000/";
 
 
     public String getLoginController(String username,String password){
